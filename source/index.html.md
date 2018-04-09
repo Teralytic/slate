@@ -1,239 +1,156 @@
 ---
-title: API Reference
 
-language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
-  - javascript
+title: teralytic-api
+
+language_tabs:
+   - shell
+   - python
+   - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
+   - <a href='#'>Sign Up for a Developer Key</a>
+   - <a href='https://github.com/lavkumarv'>Documentation Powered by lav</a>
 
 includes:
-  - errors
+   - errors
 
 search: true
+
 ---
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Teralytic-API allows customers and partners to view their probes, the sensor readings, as well as analytics and calculations from Teralytic algorithms.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+**Version:** 1.0
 
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+# /organizations
+## ***GET***
 
-# Authentication
-
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
+**Summary:** List All Organizations associated with account key
 
 ### HTTP Request
+`***GET*** /organizations`
 
-`GET http://example.com/api/kittens`
+**Responses**
 
-### Query Parameters
+| Code | Description |
+| ---- | ----------- |
+| 200 | Successful Response |
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+# /organization/{id}
+## ***GET***
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+**Summary:** List All Organizations associated with account key
 
 ### HTTP Request
+`***GET*** /organization/{id}`
 
-`GET http://example.com/kittens/<ID>`
+**Parameters**
 
-### URL Parameters
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| id | path | id of organization to retrieve | Yes | string |
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+**Responses**
 
-## Delete a Specific Kitten
+| Code | Description |
+| ---- | ----------- |
+| 200 | Successful Response |
 
-```ruby
-require 'kittn'
+# /fields
+## ***GET***
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint deletes a specific kitten.
+**Summary:** List All Fields associated with account key
 
 ### HTTP Request
+`***GET*** /fields`
 
-`DELETE http://example.com/kittens/<ID>`
+**Responses**
 
-### URL Parameters
+| Code | Description |
+| ---- | ----------- |
+| 200 | Successful Response |
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+## ***POST***
 
+**Summary:** List All fields that intersect with polygon (array of lat/lng)
+
+### HTTP Request
+`***POST*** /fields`
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 201 | Successful Response |
+
+# /field/{id}
+## ***GET***
+
+**Summary:** List Field Details associated with id provided and within those associated with the account key
+
+### HTTP Request
+`***GET*** /field/{id}`
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| id | path | id of field to retrieve | Yes | string |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | Successful Response |
+
+# /probes
+## ***GET***
+
+**Summary:** List All Probes associated with account key
+
+### HTTP Request
+`***GET*** /probes`
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | Successful Response |
+
+## ***POST***
+
+**Summary:** List all probes associated with this key within a polygon (array of lat/lng)
+
+### HTTP Request
+`***POST*** /probes`
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 201 | Successful Response |
+| 405 | Invalid Input |
+
+# /probe/{id}
+## ***GET***
+
+**Summary:** List Probe Details/Readings associated with id provided and within those associated with the account key
+
+### HTTP Request
+`***GET*** /probe/{id}`
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| id | path | id of probe to retrieve | Yes | string |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | Successful Response |
+
+<!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
